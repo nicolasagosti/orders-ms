@@ -1,0 +1,18 @@
+version: '3.9'
+
+
+services:
+  orders-db:
+    container_name: orders_database
+    image: postgres:16.2
+    volumes:
+    ## esto lo que me va a permitir es enlace mi carpeta ./postgres de mi file system con el file sistem del contenedor: /var/lib/postgressql/data
+    ## lo que me va a permitir destruir el contenedor sin que se pierda la data
+      - ./postgres:/var/lib/postgressql/data
+    ports: 
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=ordersdb
+
